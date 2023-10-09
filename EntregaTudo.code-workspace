@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"name": "EntregaTudo",
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"vector": "cpp",
+			"iosfwd": "cpp",
+			"array": "cpp",
+			"string": "cpp",
+			"string_view": "cpp",
+			"__locale": "cpp",
+			"iostream": "cpp",
+			"ios": "cpp"
+		}
+	}
+}
