@@ -22,6 +22,7 @@ class Data {
             
             Data(string path);
 
+            // print methods
             void printNumberOfClients();
             void printNumberOfVehicles();
             void printCapacityOfVehicle();
@@ -32,6 +33,17 @@ class Data {
             void printMatrixOfCosts();
             void print(std::vector<int> const &input);
             void printMatrix(const vector< vector<int> >& matrix);
+
+            // Get methods
+            int getNumberOfClients();
+            int getNumberOfVehicles();
+            int getCapacityOfVehicle();
+            int getMinOfDeliveriesToBeDone();
+            int getCostOfVehicle();
+
+            vector<int> getDemandOfClients();
+            vector<int> getOutsourcingCost();
+            vector< vector<int> > getMatrixOfCosts();
 };
 
 #endif
