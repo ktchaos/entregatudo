@@ -134,6 +134,7 @@ HeuristicSolution::HeuristicSolution(Fleet fleet, vector<Client> clients, vector
 
 // MOVIMENTOS DE VIZINHANÇA
 // SWAP - APPLY SINGLE ROUTE NEIGHBOR
+// 1:
 void HeuristicSolution::applySingleRouteNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts) {
     for (int i = 0; i < solution.travels.size(); i++) {
     Travel& travel = solution.travels[i];
@@ -233,6 +234,37 @@ void HeuristicSolution::applyOutsourcingNeighbor(vector<Travel> travels, Fleet f
     }
     // Update total cost of solution
     updateTotalCost();
+}
+
+// VND:
+void HeuristicSolution::applyVND(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector<int> outsourcingCost, vector< vector<int> > matrixOfCosts) {
+    int k = 1;
+    GreedySolution bestSolution = solution;
+    while (k <= 3) {
+        bool improved = false;
+        switch (k) {
+            case 1:
+                // Apply single route neighbor
+                applySingleRouteNeighbor(travels, fleet, clients, matrixOfCosts);
+                break;
+            case 2:
+                // Apply multiple routes neighbor
+                applyMultipleRoutesNeighbor(travels, fleet, clients, matrixOfCosts);
+                break;
+            case 3:
+                // Apply outsourcing neighbor
+                applyOutsourcingNeighbor(travels, fleet, clients, outsourcingCost, matrixOfCosts);
+                break;
+        }
+        // Check if the solution has improved
+        if (solution.total < bestSolution.total) {
+            improved = true;
+            bestSolution = solution;
+        }
+        // If the solution has improved, start again with the first neighborhood structure
+        // Otherwise, move on to the next neighborhood structure
+        k = (improved ? 1 : k + 1);
+    }
 }
 
 

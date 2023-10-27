@@ -74,7 +74,10 @@ int main() {
     // heuristicSolution.applyMultipleRoutesNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
     // cout << "teste 2 = " << heuristicSolution.solution.total << endl;
 
-    heuristicSolution.applyOutsourcingNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, formattedOutsourcingCost, data.getMatrixOfCosts());
+    // heuristicSolution.applyOutsourcingNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, formattedOutsourcingCost, data.getMatrixOfCosts());
+    // cout << "teste 2 = " << heuristicSolution.solution.total << endl;
+
+    heuristicSolution.applyVND(heuristicSolution.solution.travels, fleet, clientsInSolution, formattedOutsourcingCost, data.getMatrixOfCosts());
     cout << "teste 2 = " << heuristicSolution.solution.total << endl;
 
     return 0;
