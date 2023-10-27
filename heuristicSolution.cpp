@@ -138,10 +138,8 @@ void HeuristicSolution::applySingleRouteNeighbor(vector<Travel> travels, Fleet f
     for (int i = 0; i < solution.travels.size(); i++) {
     Travel& travel = solution.travels[i];
         for (int j = 0; j < travel.clientsDone.size() - 1; j++) {
-            // cout << "j --------- " << j << endl;
             for (int k = j + 1; k < travel.clientsDone.size(); k++) {
                 // Create a new travel by swapping client j and k
-                // cout << "k --------- " << k << endl;
                 Travel newTravel = travel;
                 swap(newTravel.clientsDone[j], newTravel.clientsDone[k]);
 
@@ -159,15 +157,59 @@ void HeuristicSolution::applySingleRouteNeighbor(vector<Travel> travels, Fleet f
         }
 
         // Update total cost of solution
-        int aux = 0;
-        for (int x = 0; x < solution.travels.size(); x++) {
-            aux += solution.travels[x].totalCost;
-        }
-        solution.totalCostOfTravels = aux;
-        solution.total = solution.totalCostOfTravels + solution.totalCostsFromUsageOfFleet + solution.totalCostOfOutsourcing;
+        updateTotalCost();
     }
 }
 
+void HeuristicSolution::applyMultipleRoutesNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts) {
+    for (int i = 0; i < solution.travels.size() - 1; i++) {
+        for (int j = i + 1; j < solution.travels.size(); j++) {
+            Travel& travel1 = solution.travels[i];
+            Travel& travel2 = solution.travels[j];
+            for (int k = 0; k < travel1.clientsDone.size(); k++) {
+                for (int l = 0; l < travel2.clientsDone.size(); l++) {
+                    // Create new travels by swapping client k of travel1 and client l of travel2
+                    Travel newTravel1 = travel1;
+                    Travel newTravel2 = travel2;
+                    swap(newTravel1.clientsDone[k], newTravel2.clientsDone[l]);
+
+                    // Calculate the new total costs
+                    newTravel1.totalCost = calculateTravelCost(newTravel1, matrixOfCosts);
+                    newTravel2.totalCost = calculateTravelCost(newTravel2, matrixOfCosts);
+
+                    // If the swap results in a lower total cost, accept the swap
+                    if (newTravel1.totalCost + newTravel2.totalCost < travel1.totalCost + travel2.totalCost) {
+                        travel1 = newTravel1;
+                        travel2 = newTravel2;
+                    }
+                }
+            }
+        }
+    }
+    // Update total cost of solution
+    updateTotalCost();
+}
+
+int HeuristicSolution::calculateTravelCost(Travel& travel, vector< vector<int> > matrixOfCosts) {
+    int totalCost = matrixOfCosts[0][travel.clientsDone[0].id]; // cost from depot to first client
+    for (int i = 0; i < travel.clientsDone.size() - 1; i++) {
+        totalCost += matrixOfCosts[travel.clientsDone[i].id][travel.clientsDone[i + 1].id];
+    }
+    totalCost += matrixOfCosts[travel.clientsDone[travel.clientsDone.size() - 1].id][0]; // cost from last client to depot
+    return totalCost;
+}
+
+void HeuristicSolution::updateTotalCost() {
+    int totalCost = 0;
+    for (Travel& travel : solution.travels) {
+        totalCost += travel.totalCost;
+    }
+    solution.totalCostOfTravels = totalCost;
+    solution.total = solution.totalCostOfTravels + solution.totalCostsFromUsageOfFleet + solution.totalCostOfOutsourcing;
+}
+
+
+// EXTRA: 2-OPT AND RE-INSERTION
 void HeuristicSolution::apply2OptNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts) {
     for (int i = 0; i < solution.travels.size(); i++) {
         Travel& travel = solution.travels[i];

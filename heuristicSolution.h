@@ -18,7 +18,6 @@ class HeuristicSolution {
         vector<int> outsourcingCost;
         vector< vector<int> > matrixOfCosts;
 
-        // Solution variables
         int solutionCost;
 
         public:
@@ -26,8 +25,12 @@ class HeuristicSolution {
             HeuristicSolution(Fleet fleet, vector<Client> clients, vector<int> demandOfClients, vector<int> outsourcingCost, vector< vector<int> > matrixOfCosts);
             
             void applySingleRouteNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts);
+            void applyMultipleRoutesNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts);
+            
             void apply2OptNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts);
             void applyReinsertionNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts);
+            void updateTotalCost();
+            int calculateTravelCost(Travel& travel, vector< vector<int> > matrixOfCosts);
 };
 
 #endif
