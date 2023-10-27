@@ -161,6 +161,7 @@ void HeuristicSolution::applySingleRouteNeighbor(vector<Travel> travels, Fleet f
     }
 }
 
+// 2:
 void HeuristicSolution::applyMultipleRoutesNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts) {
     for (int i = 0; i < solution.travels.size() - 1; i++) {
         for (int j = i + 1; j < solution.travels.size(); j++) {
@@ -206,6 +207,32 @@ void HeuristicSolution::updateTotalCost() {
     }
     solution.totalCostOfTravels = totalCost;
     solution.total = solution.totalCostOfTravels + solution.totalCostsFromUsageOfFleet + solution.totalCostOfOutsourcing;
+}
+
+
+// 3:
+void HeuristicSolution::applyOutsourcingNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector<int> outsourcingCost, vector< vector<int> > matrixOfCosts) {
+    for (int i = 0; i < solution.travels.size(); i++) {
+        Travel& travel = solution.travels[i];
+        for (int j = 0; j < travel.clientsDone.size(); j++) {
+            // Create a new travel by outsourcing client j
+            Travel newTravel = travel;
+            Client outsourcedClient = newTravel.clientsDone[j];
+            newTravel.clientsDone.erase(newTravel.clientsDone.begin() + j);
+
+            // Calculate the new total cost
+            newTravel.totalCost = calculateTravelCost(newTravel, matrixOfCosts);
+            int newOutsourcingCost = solution.totalCostOfOutsourcing + outsourcingCost[outsourcedClient.id];
+
+            // If the outsourcing results in a lower total cost, accept the outsourcing
+            if (newTravel.totalCost + newOutsourcingCost < travel.totalCost + solution.totalCostOfOutsourcing) {
+                travel = newTravel;
+                solution.totalCostOfOutsourcing = newOutsourcingCost;
+            }
+        }
+    }
+    // Update total cost of solution
+    updateTotalCost();
 }
 
 

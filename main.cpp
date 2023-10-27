@@ -62,8 +62,8 @@ int main() {
 
     cout << heuristicSolution.solution.total << endl;
 
-    heuristicSolution.applySingleRouteNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
-    cout << "teste = " << heuristicSolution.solution.total << endl;
+    // heuristicSolution.applySingleRouteNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
+    // cout << "teste = " << heuristicSolution.solution.total << endl;
 
     // heuristicSolution.apply2OptNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
     // cout << "teste 2 = " << heuristicSolution.solution.total << endl;
@@ -73,6 +73,9 @@ int main() {
 
     // heuristicSolution.applyMultipleRoutesNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
     // cout << "teste 2 = " << heuristicSolution.solution.total << endl;
+
+    heuristicSolution.applyOutsourcingNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, formattedOutsourcingCost, data.getMatrixOfCosts());
+    cout << "teste 2 = " << heuristicSolution.solution.total << endl;
 
     return 0;
 }

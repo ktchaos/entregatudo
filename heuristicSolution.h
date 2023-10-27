@@ -26,6 +26,7 @@ class HeuristicSolution {
             
             void applySingleRouteNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts);
             void applyMultipleRoutesNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts);
+            void applyOutsourcingNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector<int> outsourcingCost, vector< vector<int> > matrixOfCosts);
             
             void apply2OptNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts);
             void applyReinsertionNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts);
