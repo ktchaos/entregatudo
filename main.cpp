@@ -65,7 +65,10 @@ int main() {
     // heuristicSolution.applySingleRouteNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
     // cout << "teste = " << heuristicSolution.solution.total << endl;
 
-    heuristicSolution.apply2OptNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
+    // heuristicSolution.apply2OptNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
+    // cout << "teste 2 = " << heuristicSolution.solution.total << endl;
+
+     heuristicSolution.applyReinsertionNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
     cout << "teste 2 = " << heuristicSolution.solution.total << endl;
 
     return 0;

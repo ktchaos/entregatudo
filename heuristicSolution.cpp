@@ -135,88 +135,100 @@ HeuristicSolution::HeuristicSolution(Fleet fleet, vector<Client> clients, vector
 // MOVIMENTOS DE VIZINHANÇA
 // SWAP - APPLY SINGLE ROUTE NEIGHBOR
 void HeuristicSolution::applySingleRouteNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts) {
-    for(int i = 0; i < travels.size(); i++) {
-        Travel& currentTravel = travels[i];
-        vector<Client> currentRoute = currentTravel.clientsDone;
-        int currentCost = currentTravel.totalCost;
-        int currentCapacity = 0;
-        
-        for (int j = 0; j < currentRoute.size(); j++) { 
-            if (currentRoute.size() <= 2) {
-                // Swap!
-                Client temp = currentRoute[0];
-                currentRoute[0] = currentRoute[1];
-                currentRoute[1] = temp;
+    for (int i = 0; i < solution.travels.size(); i++) {
+    Travel& travel = solution.travels[i];
+        for (int j = 0; j < travel.clientsDone.size() - 1; j++) {
+            // cout << "j --------- " << j << endl;
+            for (int k = j + 1; k < travel.clientsDone.size(); k++) {
+                // Create a new travel by swapping client j and k
+                // cout << "k --------- " << k << endl;
+                Travel newTravel = travel;
+                swap(newTravel.clientsDone[j], newTravel.clientsDone[k]);
 
-                // Calculate the new cost of swapping the clients
-                int newCost = matrixOfCosts[0][currentRoute[0].id] + matrixOfCosts[currentRoute[0].id][currentRoute[1].id] + matrixOfCosts[currentRoute[1].id][0];
-                if (newCost < currentCost) {
-                    // If results in a lower cost, then do it!
-                    currentTravel.totalCost = newCost;
-                } else {
-                    // Else, leave it as it was
-                    temp = currentRoute[0];
-                    currentRoute[0] = currentRoute[1];
-                    currentRoute[1] = temp;
+                // Calculate the new total cost
+                newTravel.totalCost = matrixOfCosts[0][newTravel.clientsDone[0].id]; // cost from depot to first client
+                for (int l = 0; l < newTravel.clientsDone.size() - 1; l++) {
+                    newTravel.totalCost += matrixOfCosts[newTravel.clientsDone[l].id][newTravel.clientsDone[l + 1].id];
                 }
-                continue;
-            }
+                newTravel.totalCost += matrixOfCosts[newTravel.clientsDone[newTravel.clientsDone.size() - 1].id][0]; // cost from last client to depot
 
-            for (int k = j+1; k < currentRoute.size(); k++) {
-                Client temp = currentRoute[j];
-                currentRoute[j] = currentRoute[k];
-                currentRoute[k] = temp;
-
-                int newCost = currentTravel.totalCost - matrixOfCosts[currentRoute[j - 1].id][currentRoute[j].id] - matrixOfCosts[currentRoute[k - 1].id][currentRoute[k].id];
-                newCost += matrixOfCosts[currentRoute[j - 1].id][currentRoute[j].id] + matrixOfCosts[currentRoute[j].id][currentRoute[k].id] + matrixOfCosts[currentRoute[k].id][currentRoute[k+1].id];
-
-                if (newCost < currentCost) {
-                    // Se a troca resultar em um custo menor, mantenha a troca
-                    currentTravel.totalCost = newCost;
-                } else {
-                    // Caso contrário, desfaça a troca para manter a integridade da rota
-                    temp = currentRoute[j];
-                    currentRoute[j] = currentRoute[k];
-                    currentRoute[k] = temp;
+                if (newTravel.totalCost < travel.totalCost) {
+                    travel = newTravel;
                 }
             }
         }
+
+        // Update total cost of solution
+        int aux = 0;
+        for (int x = 0; x < solution.travels.size(); x++) {
+            aux += solution.travels[x].totalCost;
+        }
+        solution.totalCostOfTravels = aux;
+        solution.total = solution.totalCostOfTravels + solution.totalCostsFromUsageOfFleet + solution.totalCostOfOutsourcing;
     }
 }
 
 void HeuristicSolution::apply2OptNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts) {
-    for (int i = 0; i < travels.size(); i++) {
-        Travel& currentTravel = travels[i];
-        vector<Client>& currentRoute = currentTravel.clientsDone;
+    for (int i = 0; i < solution.travels.size(); i++) {
+        Travel& travel = solution.travels[i];
+        for (int j = 0; j < travel.clientsDone.size() - 1; j++) {
+            for (int k = j + 1; k < travel.clientsDone.size(); k++) {
+                // Create a new travel by swapping client j and k
+                Travel newTravel = travel;
+                swap(newTravel.clientsDone[j], newTravel.clientsDone[k]);
 
-        // Ajuste para percorrer todos os pares de clientes na rota
-        for (int j = 0; j < currentRoute.size() - 1; j++) {
-            for (int k = j + 1; k < currentRoute.size() - 1; k++) {
-                // Remova os arcos (j, j+1) e (k, k+1) da rota
-                int client1 = currentRoute[j].id;
-                int client2 = currentRoute[j + 1].id;
-                int client3 = currentRoute[k].id;
-                int client4 = currentRoute[k + 1].id;
+                // Calculate the new total cost
+                newTravel.totalCost = matrixOfCosts[0][newTravel.clientsDone[0].id]; // cost from depot to first client
+                for (int l = 0; l < newTravel.clientsDone.size() - 1; l++) {
+                    newTravel.totalCost += matrixOfCosts[newTravel.clientsDone[l].id][newTravel.clientsDone[l + 1].id];
+                }
+                newTravel.totalCost += matrixOfCosts[newTravel.clientsDone[newTravel.clientsDone.size() - 1].id][0]; // cost from last client to depot
 
-                int costRemoved = matrixOfCosts[client1][client2] + matrixOfCosts[client3][client4];
-
-                // Calcule o custo do novo caminho após a reconexão
-                int newCost = matrixOfCosts[client1][client3] + matrixOfCosts[client2][client4];
-
-                if (newCost < costRemoved) {
-                    // Se a reconexão resultar em um custo menor, faça a reconexão
-                    reverse(currentRoute.begin() + j + 1, currentRoute.begin() + k + 1);
+                // If the new total cost is less than the old total cost, then replace the old travel with the new one
+                if (newTravel.totalCost < travel.totalCost) {
+                    travel = newTravel;
                 }
             }
         }
     }
 
-    cout << "2-OPT" << endl;
-    for (int x = 0; x < travels.size(); x++) {
-        cout << "Rota [" << x << "]" << "  -- " << endl;
-        cout << "total cost -> " << travels[x].totalCost << endl;
-        for (int y = 0; y < travels[x].clientsDone.size(); y++) {
-            cout << "id -> " << travels[x].clientsDone[y].id << endl;
+    int aux = 0;
+    for (int x = 0; x < solution.travels.size(); x++) {
+        aux += solution.travels[x].totalCost;
+    }
+    
+    solution.totalCostOfTravels = aux;
+    solution.total = solution.totalCostOfTravels + solution.totalCostsFromUsageOfFleet + solution.totalCostOfOutsourcing;
+}
+
+void HeuristicSolution::applyReinsertionNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts) {
+    for(int i = 0; i < solution.travels.size(); i++) {
+        Travel& travel = solution.travels[i];
+        for (int j = 0; j < travel.clientsDone.size(); j++) {
+            Client client = travel.clientsDone[j];
+
+            travel.clientsDone.erase(travel.clientsDone.begin() + j);
+            travel.totalCost -= matrixOfCosts[client.id][0]; // assuming matrixOfCosts is a global variable
+
+            for(int k = 0; k <= travel.clientsDone.size(); k++) {
+                travel.clientsDone.insert(travel.clientsDone.begin() + k, client);
+
+                travel.totalCost = matrixOfCosts[0][travel.clientsDone[0].id]; // cost from depot to first client
+                for(int l = 0; l < travel.clientsDone.size() - 1; l++) {
+                    travel.totalCost += matrixOfCosts[travel.clientsDone[l].id][travel.clientsDone[l + 1].id];
+                }
+                travel.totalCost += matrixOfCosts[travel.clientsDone[travel.clientsDone.size() - 1].id][0]; // cost from last client to depot
+
+                travel.clientsDone.erase(travel.clientsDone.begin() + k);
+            }
         }
     }
+
+    int aux = 0;
+    for (int x = 0; x < solution.travels.size(); x++) {
+        aux += solution.travels[x].totalCost;
+    }
+
+    solution.totalCostOfTravels = aux;
+    solution.total = solution.totalCostOfTravels + solution.totalCostsFromUsageOfFleet + solution.totalCostOfOutsourcing;
 }
