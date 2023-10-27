@@ -132,89 +132,91 @@ HeuristicSolution::HeuristicSolution(Fleet fleet, vector<Client> clients, vector
     this->solution = solution;
 }
 
-void HeuristicSolution::applySingleRouteNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts) {
-    // void applySingleRouteNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector<vector<int>>& matrixOfCosts) {
-        for (int i = 0; i < travels.size(); i++) {
-            Travel& currentTravel = travels[i];
+// MOVIMENTOS DE VIZINHANÇA
+// SWAP - APPLY SINGLE ROUTE NEIGHBOR
+void HeuristicSolution::applySingleRouteNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts) {
+    for(int i = 0; i < travels.size(); i++) {
+        Travel& currentTravel = travels[i];
+        vector<Client> currentRoute = currentTravel.clientsDone;
+        int currentCost = currentTravel.totalCost;
+        int currentCapacity = 0;
+        
+        for (int j = 0; j < currentRoute.size(); j++) { 
+            if (currentRoute.size() <= 2) {
+                // Swap!
+                Client temp = currentRoute[0];
+                currentRoute[0] = currentRoute[1];
+                currentRoute[1] = temp;
 
-            // for (int x = 0; x < currentTravel.clientsDone.size(); x++) {
-            //     cout << "Client -> " << currentTravel.clientsDone[x].id << endl;
-            // }
-            
-            
-
-            vector<Client>& currentRoute = currentTravel.clientsDone;
-            int currentCost = currentTravel.totalCost;
-            int currentCapacity = 0;
-            
-            for (int j = 0; j < currentRoute.size(); j++) {
-                currentCapacity += currentRoute[j].demand;
-                // cout << "ClientsDone.id = " << currentRoute[j].id << endl;
-                // cout << "CurrentCapacity = " << currentCapacity << endl;
-
-                for (int k = 0; k < clients.size(); k++) {
-                    if (!clients[k].isOnSolution) {
-                        int newCapacity = currentCapacity + clients[k].demand;
-
-                        if (newCapacity <= fleet.capacity) {
-                            // cout << "Entrou, newCapactir = " << newCapacity << endl;
-                            // Calculate the cost if we insert this client at position j
-                            int newCost = currentCost - matrixOfCosts[currentRoute[j - 1].id][currentRoute[j].id];
-                            newCost += matrixOfCosts[currentRoute[j - 1].id][clients[k].id];
-                            newCost += matrixOfCosts[clients[k].id][currentRoute[j].id];
-
-                            if (newCost < currentTravel.totalCost) {
-                                cout << "EH MELHORR, newCapactir = " << newCost << endl;
-                                // If the new cost is better, update the route and cost
-                                currentRoute.insert(currentRoute.begin() + j, clients[k]);
-                                currentTravel.totalCost = newCost;
-                                clients[k].isOnSolution = true;
-                            }
-                        }
-                    }
+                // Calculate the new cost of swapping the clients
+                int newCost = matrixOfCosts[0][currentRoute[0].id] + matrixOfCosts[currentRoute[0].id][currentRoute[1].id] + matrixOfCosts[currentRoute[1].id][0];
+                if (newCost < currentCost) {
+                    // If results in a lower cost, then do it!
+                    currentTravel.totalCost = newCost;
+                } else {
+                    // Else, leave it as it was
+                    temp = currentRoute[0];
+                    currentRoute[0] = currentRoute[1];
+                    currentRoute[1] = temp;
                 }
-
-                currentCapacity -= currentRoute[j].demand;
+                continue;
             }
 
-            // // End of route
-            // for (int x = 0; x < currentRoute.size(); x++) {
-            //     cout << "Client - " << currentRoute[x].id << endl;
-            // }
-            
+            for (int k = j+1; k < currentRoute.size(); k++) {
+                Client temp = currentRoute[j];
+                currentRoute[j] = currentRoute[k];
+                currentRoute[k] = temp;
 
+                int newCost = currentTravel.totalCost - matrixOfCosts[currentRoute[j - 1].id][currentRoute[j].id] - matrixOfCosts[currentRoute[k - 1].id][currentRoute[k].id];
+                newCost += matrixOfCosts[currentRoute[j - 1].id][currentRoute[j].id] + matrixOfCosts[currentRoute[j].id][currentRoute[k].id] + matrixOfCosts[currentRoute[k].id][currentRoute[k+1].id];
 
+                if (newCost < currentCost) {
+                    // Se a troca resultar em um custo menor, mantenha a troca
+                    currentTravel.totalCost = newCost;
+                } else {
+                    // Caso contrário, desfaça a troca para manter a integridade da rota
+                    temp = currentRoute[j];
+                    currentRoute[j] = currentRoute[k];
+                    currentRoute[k] = temp;
+                }
+            }
         }
-    // }
+    }
 }
 
-
-void HeuristicSolution::applyMultiRouteNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts) {
+void HeuristicSolution::apply2OptNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts) {
     for (int i = 0; i < travels.size(); i++) {
-        for (int j = i + 1; j < travels.size(); j++) {
-            Travel& route1 = travels[i];
-            Travel& route2 = travels[j];
+        Travel& currentTravel = travels[i];
+        vector<Client>& currentRoute = currentTravel.clientsDone;
 
-            // cout << "id -> " << route1.clientsDone[i].id << endl;
+        // Ajuste para percorrer todos os pares de clientes na rota
+        for (int j = 0; j < currentRoute.size() - 1; j++) {
+            for (int k = j + 1; k < currentRoute.size() - 1; k++) {
+                // Remova os arcos (j, j+1) e (k, k+1) da rota
+                int client1 = currentRoute[j].id;
+                int client2 = currentRoute[j + 1].id;
+                int client3 = currentRoute[k].id;
+                int client4 = currentRoute[k + 1].id;
 
-            // Calculate the cost of merging the two routes
-            int route1LastClient = route1.clientsDone.back().id;
-            int route2FirstClient = route2.clientsDone.front().id;
-            int mergeCost = matrixOfCosts[route1LastClient][route2FirstClient];
+                int costRemoved = matrixOfCosts[client1][client2] + matrixOfCosts[client3][client4];
 
-            if (route1.totalCost + route2.totalCost + mergeCost <= fleet.cost) {
-                for (int x = 0; x < route1.clientsDone.size(); x++) {
-                    cout << "id -> " << route1.clientsDone[x].id << endl;
+                // Calcule o custo do novo caminho após a reconexão
+                int newCost = matrixOfCosts[client1][client3] + matrixOfCosts[client2][client4];
+
+                if (newCost < costRemoved) {
+                    // Se a reconexão resultar em um custo menor, faça a reconexão
+                    reverse(currentRoute.begin() + j + 1, currentRoute.begin() + k + 1);
                 }
-                
-                cout << "Entrou" << endl;
-                // If merging the two routes is feasible and results in a lower cost, merge them
-                route1.totalCost += route2.totalCost + mergeCost;
-                route1.clientsDone.insert(route1.clientsDone.end(), route2.clientsDone.begin(), route2.clientsDone.end());
-                route2.clientsDone.clear();
-                travels.erase(travels.begin() + j);
-                j--;
             }
+        }
+    }
+
+    cout << "2-OPT" << endl;
+    for (int x = 0; x < travels.size(); x++) {
+        cout << "Rota [" << x << "]" << "  -- " << endl;
+        cout << "total cost -> " << travels[x].totalCost << endl;
+        for (int y = 0; y < travels[x].clientsDone.size(); y++) {
+            cout << "id -> " << travels[x].clientsDone[y].id << endl;
         }
     }
 }

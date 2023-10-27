@@ -62,11 +62,11 @@ int main() {
 
     cout << heuristicSolution.solution.total << endl;
 
-    heuristicSolution.applySingleRouteNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
-    cout << "mov-1otp = " << heuristicSolution.solution.total << endl;
+    // heuristicSolution.applySingleRouteNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
+    // cout << "teste = " << heuristicSolution.solution.total << endl;
 
-    heuristicSolution.applyMultiRouteNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
-    cout << "mov-2otp = " << heuristicSolution.solution.total << endl;
+    heuristicSolution.apply2OptNeighbor(heuristicSolution.solution.travels, fleet, clientsInSolution, data.getMatrixOfCosts());
+    cout << "teste 2 = " << heuristicSolution.solution.total << endl;
 
     return 0;
 }
