@@ -179,6 +179,21 @@ void HeuristicSolution::applyMultipleRoutesNeighbor(vector<Travel> travels, Flee
                     newTravel1.totalCost = calculateTravelCost(newTravel1, matrixOfCosts);
                     newTravel2.totalCost = calculateTravelCost(newTravel2, matrixOfCosts);
 
+                    // To guarantee that the new travels will respect the fleet capacity
+                    int newCapacityTravel1 = 0;
+                    for (int x = 0; x < newTravel1.clientsDone.size(); x++) {
+                        newCapacityTravel1 = newTravel1.clientsDone[x].demand;
+                    }
+
+                    int newCapacityTravel2 = 0;
+                    for (int y = 0; y < newTravel2.clientsDone.size(); y++) {
+                        newCapacityTravel2 = newTravel1.clientsDone[y].demand;
+                    }
+
+                    if (newCapacityTravel1 > fleet.capacity && newCapacityTravel2 > fleet.capacity) {
+                        continue;
+                    }
+
                     // If the swap results in a lower total cost, accept the swap
                     if (newTravel1.totalCost + newTravel2.totalCost < travel1.totalCost + travel2.totalCost) {
                         travel1 = newTravel1;
@@ -267,7 +282,7 @@ void HeuristicSolution::applyVND(vector<Travel> travels, Fleet fleet, vector<Cli
     }
 }
 
-
+// -----------------------------------------------------------------------------------------------------------
 // EXTRA: 2-OPT AND RE-INSERTION
 void HeuristicSolution::apply2OptNeighbor(vector<Travel>& travels, Fleet& fleet, vector<Client>& clients, vector< vector<int> > matrixOfCosts) {
     for (int i = 0; i < solution.travels.size(); i++) {
