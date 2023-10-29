@@ -9,22 +9,38 @@ using namespace std;
 
 int main() {
     // Retrieve data from txt file
-    Data data = Data("instancias/n9k5_A.txt");
     // Data data = Data("instancias/n9k5_A.txt");
+    // Data data = Data("instancias/n9k5_B.txt");
+    // Data data = Data("instancias/n9k5_C.txt");
     // Data data = Data("instancias/n9k5_D.txt");
     // Data data = Data("instancias/n14k5_A.txt");
+    // Data data = Data("instancias/n14k5_B.txt");
+    // Data data = Data("instancias/n14k5_C.txt");
     // Data data = Data("instancias/n14k5_D.txt");
-    // Data data = Data("instancias/n22k3_A.txt");
+    Data data = Data("instancias/n22k3_A.txt");
+    // Data data = Data("instancias/n22k3_B.txt");
+    // Data data = Data("instancias/n22k3_C.txt");
     // Data data = Data("instancias/n22k3_D.txt");
-
-    // data.printNumberOfClients();
-    // data.printNumberOfVehicles();
-    // data.printCapacityOfVehicle();
-    // data.printMinOfDeliveriesToBeDone();
-    // data.printCostOfVehicle();
-    // data.printDemandOfClients();
-    // data.printOutsourcingCost();
-    // data.printMatrixOfCosts();
+    // Data data = Data("instancias/n31k5_A.txt");
+    // Data data = Data("instancias/n31k5_B.txt");
+    // Data data = Data("instancias/n31k5_C.txt");
+    // Data data = Data("instancias/n31k5_D.txt");
+    // Data data = Data("instancias/n43k6_A.txt");
+    // Data data = Data("instancias/n43k6_B.txt");
+    // Data data = Data("instancias/n43k6_C.txt");
+    // Data data = Data("instancias/n43k6_D.txt");
+    // Data data = Data("instancias/n64k9_A.txt");
+    // Data data = Data("instancias/n64k9_B.txt");
+    // Data data = Data("instancias/n64k9_C.txt");
+    // Data data = Data("instancias/n64k9_D.txt");
+    // Data data = Data("instancias/n120k7_A.txt");
+    // Data data = Data("instancias/n120k7_B.txt");
+    // Data data = Data("instancias/n120k7_C.txt");
+    // Data data = Data("instancias/n120k7_D.txt");
+    // Data data = Data("instancias/n199k17_A.txt");
+    // Data data = Data("instancias/n199k17_B.txt");
+    // Data data = Data("instancias/n199k17_C.txt");
+    // Data data = Data("instancias/n199k17_D.txt");
 
     int numberOfClients = data.getNumberOfClients();
     vector<int> demandOfClients = data.getDemandOfClients();

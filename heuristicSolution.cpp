@@ -132,9 +132,7 @@ HeuristicSolution::HeuristicSolution(Fleet fleet, vector<Client> clients, vector
     this->solution = solution;
 }
 
-// MOVIMENTOS DE VIZINHANÇA
-// SWAP - APPLY SINGLE ROUTE NEIGHBOR
-// 1:
+// 1: SINGLE ROUTE
 void HeuristicSolution::applySingleRouteNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts) {
     for (int i = 0; i < solution.travels.size(); i++) {
     Travel& travel = solution.travels[i];
@@ -162,7 +160,7 @@ void HeuristicSolution::applySingleRouteNeighbor(vector<Travel> travels, Fleet f
     }
 }
 
-// 2:
+// 2: MULTIPLE ROUTES
 void HeuristicSolution::applyMultipleRoutesNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector< vector<int> > matrixOfCosts) {
     for (int i = 0; i < solution.travels.size() - 1; i++) {
         for (int j = i + 1; j < solution.travels.size(); j++) {
@@ -208,6 +206,11 @@ void HeuristicSolution::applyMultipleRoutesNeighbor(vector<Travel> travels, Flee
 }
 
 int HeuristicSolution::calculateTravelCost(Travel& travel, vector< vector<int> > matrixOfCosts) {
+    // *In case of outsourcing client -> if the travel doesn't exists anymore, returns 0 for total cost*
+    if (travel.clientsDone.size() == 0) {
+        return 0;
+    }
+
     int totalCost = matrixOfCosts[0][travel.clientsDone[0].id]; // cost from depot to first client
     for (int i = 0; i < travel.clientsDone.size() - 1; i++) {
         totalCost += matrixOfCosts[travel.clientsDone[i].id][travel.clientsDone[i + 1].id];
@@ -226,7 +229,7 @@ void HeuristicSolution::updateTotalCost() {
 }
 
 
-// 3:
+// 3: OUTSOURCING
 void HeuristicSolution::applyOutsourcingNeighbor(vector<Travel> travels, Fleet fleet, vector<Client> clients, vector<int> outsourcingCost, vector< vector<int> > matrixOfCosts) {
     for (int i = 0; i < solution.travels.size(); i++) {
         Travel& travel = solution.travels[i];
