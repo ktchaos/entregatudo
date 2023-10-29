@@ -13,6 +13,19 @@
         "string": "cpp",
         "string_view": "cpp",
         "unordered_map": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "__node_handle": "cpp",
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "__memory": "cpp",
+        "limits": "cpp",
+        "locale": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "chrono": "cpp",
+        "cstddef": "cpp"
     }
 }

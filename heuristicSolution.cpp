@@ -65,7 +65,6 @@ HeuristicSolution::HeuristicSolution(Fleet fleet, vector<Client> clients, vector
             int provisoryCapacity = currentCapacity + choosedClient.demand;
 
             if (provisoryCapacity < fleet.capacity) {
-                cout << "o Client escolhido foi no índice ---> " << clientNumber << endl;
                 // Update the current capacity of the fleet
                 currentCapacity += choosedClient.demand;
                 travelDone.clientsDone.push_back(choosedClient);
@@ -80,12 +79,10 @@ HeuristicSolution::HeuristicSolution(Fleet fleet, vector<Client> clients, vector
                     travelDone.totalCost += matrixOfCosts[lastClient.id][0];
                     travels.push_back(travelDone);
                     // END OF THE TRAVEL
-                    cout << "FIM DA VIAGEM ---- " << endl;
                     numberOfFleetsAvailable--;
                 }
             } else {
                 // END OF THE TRAVEL
-                cout << "FIM DA VIAGEM ---- " << endl;
                 numberOfFleetsAvailable--;
                 aux--;
                 // Calculates the return to the deposity

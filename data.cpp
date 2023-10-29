@@ -10,7 +10,8 @@ using namespace std;
 
 // Constructor:
 
-Data::Data(string path) {
+Data::Data(string path, int optimumValue) {
+    this->optimumValue = optimumValue;
     ifstream myFile(path);
 
     int aux;
@@ -128,6 +129,10 @@ int Data::getMinOfDeliveriesToBeDone() {
 
 int Data::getCostOfVehicle() {
     return costOfVehicle;
+}
+
+int Data::getOptimumValue() {
+    return optimumValue;
 }
 
 vector<int> Data::getOutsourcingCost() {
