@@ -2,351 +2,351 @@
 Ótimo: 428
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 612
-Tempo: 7.9625e-05 segundos
+Tempo: 7.85e-05 segundos
 gap: 42.9907
 ----- VND -----
 Valor solução: 609
-Tempo: 0.000260458 segundos
+Tempo: 0.000222292 segundos
 gap: 42.2897
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n9k5_B.txt -------------------------------
 Ótimo: 506
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 846
-Tempo: 4.7084e-05 segundos
+Tempo: 4.9833e-05 segundos
 gap: 67.1937
 ----- VND -----
 Valor solução: 843
-Tempo: 0.000253458 segundos
+Tempo: 0.00021975 segundos
 gap: 66.6008
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n9k5_C.txt -------------------------------
 Ótimo: 559
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 846
-Tempo: 4.6e-05 segundos
+Tempo: 4.5292e-05 segundos
 gap: 51.3417
 ----- VND -----
 Valor solução: 843
-Tempo: 0.00023275 segundos
+Tempo: 0.00021975 segundos
 gap: 50.805
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n9k5_D.txt -------------------------------
 Ótimo: 408
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 612
-Tempo: 4.4875e-05 segundos
+Tempo: 4.5083e-05 segundos
 gap: 50
 ----- VND -----
 Valor solução: 609
-Tempo: 0.00023325 segundos
+Tempo: 0.000221667 segundos
 gap: 49.2647
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n14k5_A.txt -------------------------------
 Ótimo: 471
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 831
-Tempo: 6.4542e-05 segundos
+Tempo: 5.9834e-05 segundos
 gap: 76.4331
 ----- VND -----
 Valor solução: 685
-Tempo: 0.00286567 segundos
+Tempo: 0.00254887 segundos
 gap: 45.4352
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n14k5_B.txt -------------------------------
 Ótimo: 565
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 1113
-Tempo: 6.35e-05 segundos
+Tempo: 5.9e-05 segundos
 gap: 96.9911
 ----- VND -----
 Valor solução: 967
-Tempo: 0.00285108 segundos
+Tempo: 0.00254375 segundos
 gap: 71.1504
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n14k5_C.txt -------------------------------
 Ótimo: 569
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 1113
-Tempo: 6.2416e-05 segundos
+Tempo: 5.8959e-05 segundos
 gap: 95.6063
 ----- VND -----
 Valor solução: 967
-Tempo: 0.00284421 segundos
+Tempo: 0.00253808 segundos
 gap: 69.9473
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n14k5_D.txt -------------------------------
 Ótimo: 471
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 831
-Tempo: 6.0125e-05 segundos
+Tempo: 5.8333e-05 segundos
 gap: 76.4331
 ----- VND -----
 Valor solução: 685
-Tempo: 0.00272833 segundos
+Tempo: 0.00251721 segundos
 gap: 45.4352
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n22k3_A.txt -------------------------------
 Ótimo: 605
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 1107
-Tempo: 0.000104125 segundos
+Tempo: 9.7458e-05 segundos
 gap: 82.9752
 ----- VND -----
 Valor solução: 829
-Tempo: 0.0109263 segundos
+Tempo: 0.0100746 segundos
 gap: 37.0248
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n22k3_B.txt -------------------------------
 Ótimo: 777
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 1623
-Tempo: 9.9625e-05 segundos
+Tempo: 9.375e-05 segundos
 gap: 108.88
 ----- VND -----
 Valor solução: 1345
-Tempo: 0.0105206 segundos
+Tempo: 0.00960583 segundos
 gap: 73.1017
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n22k3_C.txt -------------------------------
 Ótimo: 777
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 1623
-Tempo: 9.7375e-05 segundos
+Tempo: 9.0917e-05 segundos
 gap: 108.88
 ----- VND -----
 Valor solução: 1345
-Tempo: 0.0104759 segundos
+Tempo: 0.00952592 segundos
 gap: 73.1017
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n22k3_D.txt -------------------------------
 Ótimo: 605
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 1107
-Tempo: 9.6708e-05 segundos
+Tempo: 9.15e-05 segundos
 gap: 82.9752
 ----- VND -----
 Valor solução: 829
-Tempo: 0.0104781 segundos
+Tempo: 0.00972858 segundos
 gap: 37.0248
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n31k5_A.txt -------------------------------
 Ótimo: 650
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 1814
-Tempo: 0.000152959 segundos
+Tempo: 0.000147792 segundos
 gap: 179.077
 ----- VND -----
 Valor solução: 1580
-Tempo: 0.0621011 segundos
+Tempo: 0.0574839 segundos
 gap: 143.077
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n31k5_B.txt -------------------------------
 Ótimo: 933
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 3199
-Tempo: 0.000155667 segundos
+Tempo: 0.00015025 segundos
 gap: 242.872
 ----- VND -----
 Valor solução: 2965
-Tempo: 0.0623488 segundos
+Tempo: 0.057892 segundos
 gap: 217.792
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n31k5_C.txt -------------------------------
 Ótimo: 939
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 3199
-Tempo: 0.000159875 segundos
+Tempo: 0.000149459 segundos
 gap: 240.682
 ----- VND -----
 Valor solução: 2965
-Tempo: 0.0634836 segundos
+Tempo: 0.0572798 segundos
 gap: 215.761
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n31k5_D.txt -------------------------------
 Ótimo: 656
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 1814
-Tempo: 0.000174583 segundos
+Tempo: 0.000157458 segundos
 gap: 176.524
 ----- VND -----
 Valor solução: 1580
-Tempo: 0.0614761 segundos
+Tempo: 0.0572687 segundos
 gap: 140.854
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n43k6_A.txt -------------------------------
 Ótimo: 801
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 2541
-Tempo: 0.000268208 segundos
+Tempo: 0.000244209 segundos
 gap: 217.228
 ----- VND -----
 Valor solução: 2219
-Tempo: 0.224161 segundos
+Tempo: 0.20724 segundos
 gap: 177.029
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n43k6_B.txt -------------------------------
 Ótimo: 1203
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 4953
-Tempo: 0.00027025 segundos
+Tempo: 0.000254167 segundos
 gap: 311.721
 ----- VND -----
 Valor solução: 4631
-Tempo: 0.222504 segundos
+Tempo: 0.206399 segundos
 gap: 284.954
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n43k6_C.txt -------------------------------
 Ótimo: 1208
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 4953
-Tempo: 0.000263458 segundos
+Tempo: 0.000254125 segundos
 gap: 310.017
 ----- VND -----
 Valor solução: 4631
-Tempo: 0.223544 segundos
+Tempo: 0.205814 segundos
 gap: 283.361
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n43k6_D.txt -------------------------------
 Ótimo: 802
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 2541
-Tempo: 0.000271208 segundos
+Tempo: 0.000263958 segundos
 gap: 216.833
 ----- VND -----
 Valor solução: 2219
-Tempo: 0.223257 segundos
+Tempo: 0.206383 segundos
 gap: 176.683
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n64k9_A.txt -------------------------------
 Ótimo: 934
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 4046
-Tempo: 0.00050475 segundos
+Tempo: 0.000467042 segundos
 gap: 333.191
 ----- VND -----
 Valor solução: 3821
-Tempo: 0.709228 segundos
+Tempo: 0.704969 segundos
 gap: 309.101
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n64k9_B.txt -------------------------------
 Ótimo: 1503
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 9095
-Tempo: 0.0005525 segundos
+Tempo: 0.000462209 segundos
 gap: 505.123
 ----- VND -----
 Valor solução: 8870
-Tempo: 0.713522 segundos
+Tempo: 0.704017 segundos
 gap: 490.153
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n64k9_C.txt -------------------------------
 Ótimo: 1510
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 9095
-Tempo: 0.000497125 segundos
+Tempo: 0.000476792 segundos
 gap: 502.318
 ----- VND -----
 Valor solução: 8870
-Tempo: 0.708837 segundos
+Tempo: 0.72002 segundos
 gap: 487.417
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n64k9_D.txt -------------------------------
 Ótimo: 932
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 4046
-Tempo: 0.000482833 segundos
+Tempo: 0.000474125 segundos
 gap: 334.12
 ----- VND -----
 Valor solução: 3821
-Tempo: 0.710291 segundos
+Tempo: 0.706376 segundos
 gap: 309.979
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n120k7_A.txt -------------------------------
 Ótimo: 1029
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 5135
-Tempo: 0.0012085 segundos
+Tempo: 0.00116779 segundos
 gap: 399.028
 ----- VND -----
 Valor solução: 4893
-Tempo: 6.80961 segundos
+Tempo: 6.70441 segundos
 gap: 375.51
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n120k7_B.txt -------------------------------
 Ótimo: 2052
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 12156
-Tempo: 0.00115429 segundos
+Tempo: 0.00112375 segundos
 gap: 492.398
 ----- VND -----
 Valor solução: 11914
-Tempo: 6.76019 segundos
+Tempo: 6.69815 segundos
 gap: 480.604
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n120k7_C.txt -------------------------------
 Ótimo: 2040
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 12156
-Tempo: 0.00116067 segundos
+Tempo: 0.00111417 segundos
 gap: 495.882
 ----- VND -----
 Valor solução: 11914
-Tempo: 6.8246 segundos
+Tempo: 6.69249 segundos
 gap: 484.02
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n120k7_D.txt -------------------------------
 Ótimo: 1046
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 5135
-Tempo: 0.00119287 segundos
+Tempo: 0.00110858 segundos
 gap: 390.918
 ----- VND -----
 Valor solução: 4893
-Tempo: 6.81082 segundos
+Tempo: 6.69312 segundos
 gap: 367.782
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n199k17_A.txt -------------------------------
 Ótimo: 1672
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 16108
-Tempo: 0.00297458 segundos
+Tempo: 0.00290588 segundos
 gap: 863.397
 ----- VND -----
 Valor solução: 15564
-Tempo: 98.7533 segundos
+Tempo: 97.6446 segundos
 gap: 830.861
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n199k17_B.txt -------------------------------
 Ótimo: 3302
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 43801
-Tempo: 0.00304842 segundos
+Tempo: 0.00288688 segundos
 gap: 1226.5
 ----- VND -----
 Valor solução: 43257
-Tempo: 98.648 segundos
+Tempo: 98.5681 segundos
 gap: 1210.02
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n199k17_C.txt -------------------------------
 Ótimo: 3301
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 43801
-Tempo: 0.00288042 segundos
+Tempo: 0.00287825 segundos
 gap: 1226.9
 ----- VND -----
 Valor solução: 43257
-Tempo: 97.6424 segundos
+Tempo: 98.6232 segundos
 gap: 1210.42
 -------------------------------------------------------------------------------------
 ------------------------------- instancias/n199k17_D.txt -------------------------------
 Ótimo: 1672
 ----- HEURÍSTICA CONSTRUTIVA -----
 Valor solução: 16108
-Tempo: 0.00287408 segundos
+Tempo: 0.00303221 segundos
 gap: 863.397
 ----- VND -----
 Valor solução: 15564
-Tempo: 97.7614 segundos
+Tempo: 99.513 segundos
 gap: 830.861
 -------------------------------------------------------------------------------------
