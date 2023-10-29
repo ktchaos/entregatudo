@@ -19,6 +19,7 @@ class Data {
         vector< vector<int> > matrixOfCosts; // c
 
         int optimumValue;
+        string path;
 
         public:
             
@@ -43,6 +44,8 @@ class Data {
             int getMinOfDeliveriesToBeDone();
             int getCostOfVehicle();
             int getOptimumValue();
+
+            string getPath();
 
             vector<int> getDemandOfClients();
             vector<int> getOutsourcingCost();

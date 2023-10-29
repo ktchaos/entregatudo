@@ -12,6 +12,7 @@ using namespace std;
 
 Data::Data(string path, int optimumValue) {
     this->optimumValue = optimumValue;
+    this->path = path;
     ifstream myFile(path);
 
     int aux;
@@ -133,6 +134,10 @@ int Data::getCostOfVehicle() {
 
 int Data::getOptimumValue() {
     return optimumValue;
+}
+
+string Data::getPath() {
+    return path;
 }
 
 vector<int> Data::getOutsourcingCost() {
