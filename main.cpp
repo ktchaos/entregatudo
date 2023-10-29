@@ -3,7 +3,6 @@
 #include <string>
 #include <fstream>
 #include <chrono>
-#include <hpdf.h>
 #include "data.h"
 #include "heuristicSolution.h"
 
