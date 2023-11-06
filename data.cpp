@@ -10,7 +10,9 @@ using namespace std;
 
 // Constructor:
 
-Data::Data(string path) {
+Data::Data(string path, int optimumValue) {
+    this->optimumValue = optimumValue;
+    this->path = path;
     ifstream myFile(path);
 
     int aux;
@@ -102,4 +104,46 @@ void Data::printMatrix(const vector< vector<int> >& matrix) {
         }
         cout << endl;
     }
+}
+
+// Get methods
+
+int Data::getNumberOfClients() {
+    return numberOfClients;
+}
+
+vector<int> Data::getDemandOfClients() {
+    return demandOfClients;
+}
+
+int Data::getNumberOfVehicles() {
+    return numberOfVehicles;
+}
+
+int Data::getCapacityOfVehicle() {
+    return capacityOfVehicle;
+}
+
+int Data::getMinOfDeliveriesToBeDone() {
+    return minOfDeliveriesToBeDone;
+}
+
+int Data::getCostOfVehicle() {
+    return costOfVehicle;
+}
+
+int Data::getOptimumValue() {
+    return optimumValue;
+}
+
+string Data::getPath() {
+    return path;
+}
+
+vector<int> Data::getOutsourcingCost() {
+    return outsourcingCost;
+}
+
+vector< vector<int> > Data::getMatrixOfCosts() {
+    return matrixOfCosts;
 }
