@@ -90,8 +90,9 @@ int main(int argc, char* argv[]) {
 
     if (heuristicSolution.solution.outsourcedClients.size() > 0) {
         for (int i = 0; i < heuristicSolution.solution.outsourcedClients.size(); i++) {
-            resultsArchive << heuristicSolution.solution.outsourcedClients[i].id << " " << endl;
+            resultsArchive << heuristicSolution.solution.outsourcedClients[i].id << " ";
         }
+        resultsArchive << " " << endl;
     } else {
         resultsArchive << "nenhum cliente foi terceirizado" << endl;
     }
