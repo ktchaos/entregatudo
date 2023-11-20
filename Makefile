@@ -13,7 +13,7 @@ $(TARGET): $(SOURCES)
 	$(CXX) -o $@ $^
 
 run: $(TARGET)
-	./$(TARGET)
+	./$(TARGET) $(FILE)
 
 clean:
 	rm -f $(TARGET)

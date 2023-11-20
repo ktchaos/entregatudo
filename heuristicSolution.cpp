@@ -12,7 +12,7 @@ using namespace std;
 
 HeuristicSolution::HeuristicSolution(Fleet fleet, vector<Client> clients, vector<int> demandOfClients, vector<int> outsourcingCost, vector< vector<int> > matrixOfCosts) {
     /* #### Greedy Algorithm Solution #### */
-
+    GreedySolution solution = GreedySolution();
     vector<Travel> travels;
 
     vector<int> currentCostLineOnMatrix = matrixOfCosts[0];
@@ -106,12 +106,12 @@ HeuristicSolution::HeuristicSolution(Fleet fleet, vector<Client> clients, vector
 
             Client choosedClient = clientsRemaining[0];
             clients[choosedClient.id-1].isOnSolution = true;
+            solution.outsourcedClients.push_back(choosedClient);
             totalOutsourcingCost += outsourcingCost[choosedClient.id];
         }
     }
 
     // Build the solution struct
-    GreedySolution solution = GreedySolution();
     solution.travels = travels;
     solution.totalCostOfTravels = 0;
     solution.totalCostsFromUsageOfFleet = 0;
@@ -235,6 +235,7 @@ void HeuristicSolution::applyOutsourcingNeighbor(vector<Travel> travels, Fleet f
             Travel newTravel = travel;
             Client outsourcedClient = newTravel.clientsDone[j];
             newTravel.clientsDone.erase(newTravel.clientsDone.begin() + j);
+            
 
             // Calculate the new total cost
             newTravel.totalCost = calculateTravelCost(newTravel, matrixOfCosts);
@@ -244,6 +245,7 @@ void HeuristicSolution::applyOutsourcingNeighbor(vector<Travel> travels, Fleet f
             if (newTravel.totalCost + newOutsourcingCost < travel.totalCost + solution.totalCostOfOutsourcing) {
                 travel = newTravel;
                 solution.totalCostOfOutsourcing = newOutsourcingCost;
+                solution.outsourcedClients.push_back(outsourcedClient);
             }
         }
     }
